@@ -4,6 +4,7 @@ import ResourceCard from '@/components/ResourceCard';
 import ModeSelector from '@/components/ModeSelector';
 import EarthOvershoot from '@/components/EarthOvershoot';
 import SettingsModal from '@/components/SettingsModal';
+import LiveStatsSection from '@/components/LiveStatsSection';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { resources } from '@/lib/resourceData';
@@ -105,6 +106,20 @@ const Index = () => {
               </div>
             </div>
           </Card>
+        </section>
+
+        <Separator className="my-16 max-w-5xl mx-auto" />
+
+        {/* Live Statistics Section */}
+        <section className="mb-16 md:mb-24 max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Live Global Statistics</h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Real-time counters tracking population changes, government spending, and industrial production.
+              Values update every second based on current global averages.
+            </p>
+          </div>
+          <LiveStatsSection />
         </section>
 
         <Separator className="my-12 max-w-4xl mx-auto" />
