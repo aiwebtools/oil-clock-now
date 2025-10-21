@@ -10,21 +10,25 @@ export interface Resource {
     'moderate-conservation': number;
     'radical-sustainability': number;
   };
+  totalReserves: {
+    'business-as-usual': number;
+    'moderate-conservation': number;
+    'radical-sustainability': number;
+  };
   estimatedYearsRemaining: {
     'business-as-usual': number;
     'moderate-conservation': number;
     'radical-sustainability': number;
   } | null;
   description: string;
-  contextQuote: string;
-  visualCue: string;
+  scientificNote: string;
   color: string; // semantic token
 }
 
 export const resources: Resource[] = [
   {
     id: 'oil',
-    name: 'Oil',
+    name: 'Crude Oil',
     icon: '🛢️',
     unit: 'barrels',
     ratePerSecond: {
@@ -32,14 +36,18 @@ export const resources: Resource[] = [
       'moderate-conservation': 880,
       'radical-sustainability': 550,
     },
+    totalReserves: {
+      'business-as-usual': 1.65e12,
+      'moderate-conservation': 1.65e12,
+      'radical-sustainability': 1.65e12,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 47,
       'moderate-conservation': 59,
       'radical-sustainability': 94,
     },
-    description: 'Global crude oil depletion at current consumption rates.',
-    contextQuote: 'A child born today may see the last drop burned.',
-    visualCue: 'Drops of black vanishing into desert sand',
+    description: 'Proven global crude oil reserves depleting at current extraction rates.',
+    scientificNote: 'Based on 1.65 trillion barrel proven reserves. Consumption: ~100M barrels/day globally.',
     color: 'text-destructive',
   },
   {
@@ -52,14 +60,18 @@ export const resources: Resource[] = [
       'moderate-conservation': 3120,
       'radical-sustainability': 1950,
     },
+    totalReserves: {
+      'business-as-usual': 6.4e12,
+      'moderate-conservation': 6.4e12,
+      'radical-sustainability': 6.4e12,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 52,
       'moderate-conservation': 65,
       'radical-sustainability': 104,
     },
-    description: 'Natural gas being consumed worldwide.',
-    contextQuote: 'Demand projected to rise before decline.',
-    visualCue: 'A flickering blue flame dimming',
+    description: 'Global natural gas reserves at current extraction rates.',
+    scientificNote: 'Proven reserves: ~188 trillion cubic meters. Consumption rate increasing 2.6% annually.',
     color: 'text-primary',
   },
   {
@@ -72,19 +84,23 @@ export const resources: Resource[] = [
       'moderate-conservation': 6400,
       'radical-sustainability': 4000,
     },
+    totalReserves: {
+      'business-as-usual': 3.3e12,
+      'moderate-conservation': 3.3e12,
+      'radical-sustainability': 3.3e12,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 132,
       'moderate-conservation': 165,
       'radical-sustainability': 264,
     },
-    description: 'Coal combustion across the globe.',
-    contextQuote: 'Mountain slowly eroding to dust.',
-    visualCue: 'Mountain slowly eroding to dust',
+    description: 'Coal reserves depleting through global combustion.',
+    scientificNote: 'Proven reserves: ~1.07 trillion tons. Highest CO₂ emissions per unit energy of all fossil fuels.',
     color: 'text-muted-foreground',
   },
   {
     id: 'freshwater',
-    name: 'Freshwater',
+    name: 'Freshwater Aquifers',
     icon: '💧',
     unit: 'liters',
     ratePerSecond: {
@@ -92,19 +108,23 @@ export const resources: Resource[] = [
       'moderate-conservation': 720000,
       'radical-sustainability': 450000,
     },
+    totalReserves: {
+      'business-as-usual': 1.4e18,
+      'moderate-conservation': 1.4e18,
+      'radical-sustainability': 1.4e18,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 50,
       'moderate-conservation': 63,
       'radical-sustainability': 100,
     },
-    description: 'Fresh groundwater withdrawal from critical aquifers.',
-    contextQuote: 'How deep must we drill before we ask why?',
-    visualCue: 'Water level in a glass dropping every second',
+    description: 'Critical groundwater depletion from major aquifers (Ogallala, Arabian, North China).',
+    scientificNote: 'Aquifer depletion rate: 1-2 meters/year in critical zones. Groundwater accounts for 30% of freshwater.',
     color: 'text-blue-400',
   },
   {
     id: 'topsoil',
-    name: 'Topsoil',
+    name: 'Arable Topsoil',
     icon: '🌱',
     unit: 'hectares',
     ratePerSecond: {
@@ -112,19 +132,23 @@ export const resources: Resource[] = [
       'moderate-conservation': 0.53,
       'radical-sustainability': 0.30,
     },
+    totalReserves: {
+      'business-as-usual': 1.45e9,
+      'moderate-conservation': 1.45e9,
+      'radical-sustainability': 1.45e9,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 60,
       'moderate-conservation': 86,
       'radical-sustainability': 152,
     },
-    description: 'Loss of arable land due to erosion and degradation.',
-    contextQuote: 'We are mining the future to eat the present.',
-    visualCue: 'Earth cracking beneath crops',
+    description: 'Agricultural land loss due to erosion, degradation, and desertification.',
+    scientificNote: '24 billion tons of fertile soil lost annually. Erosion rate: 10-40x faster than regeneration.',
     color: 'text-amber-600',
   },
   {
     id: 'forests',
-    name: 'Forests',
+    name: 'Forest Cover',
     icon: '🌲',
     unit: 'hectares',
     ratePerSecond: {
@@ -132,19 +156,23 @@ export const resources: Resource[] = [
       'moderate-conservation': 0.19,
       'radical-sustainability': 0.05,
     },
+    totalReserves: {
+      'business-as-usual': 4.0e9,
+      'moderate-conservation': 4.0e9,
+      'radical-sustainability': 4.0e9,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 200,
       'moderate-conservation': 337,
       'radical-sustainability': 1280,
     },
-    description: 'Deforestation globally, affecting biodiversity and climate.',
-    contextQuote: 'Rainforests contain irreplaceable biodiversity.',
-    visualCue: 'Tree shadows shrinking',
+    description: 'Global deforestation rate affecting carbon sequestration and biodiversity.',
+    scientificNote: '10 million hectares cleared annually. Forests store ~296 gigatons of carbon.',
     color: 'text-green-500',
   },
   {
     id: 'biodiversity',
-    name: 'Biodiversity',
+    name: 'Species Diversity',
     icon: '🐾',
     unit: 'species',
     ratePerSecond: {
@@ -152,15 +180,19 @@ export const resources: Resource[] = [
       'moderate-conservation': 0.00034,
       'radical-sustainability': 0.00011,
     },
+    totalReserves: {
+      'business-as-usual': 8.7e6,
+      'moderate-conservation': 8.7e6,
+      'radical-sustainability': 8.7e6,
+    },
     estimatedYearsRemaining: null,
-    description: 'Estimated species going extinct at 1,000× background rate.',
-    contextQuote: 'Extinction is permanent. Awareness is not.',
-    visualCue: 'Disappearing silhouettes of animals',
+    description: 'Species extinction at 1,000× natural background rate.',
+    scientificNote: 'Current extinction rate: 100-1,000 species per million per year. Natural rate: 0.1-1.',
     color: 'text-purple-400',
   },
   {
     id: 'copper',
-    name: 'Copper',
+    name: 'Copper Ore',
     icon: '🔋',
     unit: 'tons',
     ratePerSecond: {
@@ -168,14 +200,18 @@ export const resources: Resource[] = [
       'moderate-conservation': 13,
       'radical-sustainability': 8,
     },
+    totalReserves: {
+      'business-as-usual': 2.0e9,
+      'moderate-conservation': 2.0e9,
+      'radical-sustainability': 2.0e9,
+    },
     estimatedYearsRemaining: {
       'business-as-usual': 40,
       'moderate-conservation': 49,
       'radical-sustainability': 80,
     },
-    description: 'Copper extraction worldwide for electronics and infrastructure.',
-    contextQuote: 'Powers cars, phones, and batteries.',
-    visualCue: 'Circuit board fracturing',
+    description: 'Copper extraction for electrical infrastructure, EVs, and renewable energy systems.',
+    scientificNote: 'Global reserves: ~870 million tons copper content. Demand rising with green energy transition.',
     color: 'text-orange-400',
   },
 ];
