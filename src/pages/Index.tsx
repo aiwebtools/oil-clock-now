@@ -1,22 +1,14 @@
 import { useState } from 'react';
-import CountdownTimer from '@/components/CountdownTimer';
-import ProgressGauge from '@/components/ProgressGauge';
-import SettingsModal from '@/components/SettingsModal';
+import ResourceCard from '@/components/ResourceCard';
+import ModeSelector from '@/components/ModeSelector';
+import EarthOvershoot from '@/components/EarthOvershoot';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { resources } from '@/lib/resourceData';
+import type { ResourceMode } from '@/lib/resourceData';
 
 const Index = () => {
-  const [totalReserves, setTotalReserves] = useState(1.65e12); // 1.65 trillion barrels
-  const [dailyConsumption, setDailyConsumption] = useState(1.0e8); // 100 million barrels/day
-  const [populationGrowthRate, setPopulationGrowthRate] = useState(1.02); // 2% annual growth
-
-  const handleUpdateSettings = (reserves: number, consumption: number, growthRate: number) => {
-    setTotalReserves(reserves);
-    setDailyConsumption(consumption);
-    setPopulationGrowthRate(growthRate);
-  };
-
-  const daysRemaining = totalReserves / dailyConsumption;
+  const [mode, setMode] = useState<ResourceMode>('business-as-usual');
 
   return (
     <div className="min-h-screen bg-gradient-hero relative overflow-hidden">
@@ -26,90 +18,40 @@ const Index = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-destructive/20 rounded-full blur-[120px] animate-float" style={{ animationDelay: '3s' }} />
       </div>
 
-      <SettingsModal
-        totalReserves={totalReserves}
-        dailyConsumption={dailyConsumption}
-        populationGrowthRate={populationGrowthRate}
-        onUpdate={handleUpdateSettings}
-      />
-
       <div className="relative z-10 container mx-auto px-4 py-12 md:py-20">
         {/* Hero Section */}
         <header className="text-center mb-16 md:mb-24 space-y-6">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
-            Global Oil Countdown
+            🌍 The Humanity Clock
           </h1>
           <p className="text-xl md:text-2xl text-primary font-semibold max-w-3xl mx-auto animate-pulse-glow">
-            How Long Until the Wells Run Dry?
+            A Multidimensional Timepiece Tracking Earth's Essential Resources
           </p>
           <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-            A real-time tracker showing how much oil humanity has left — based on today's consumption rates.
+            Real-time depletion tracking across oil, water, forests, biodiversity, and critical minerals — 
+            reflecting urgency without coercion, awareness without despair.
           </p>
         </header>
 
-        {/* Countdown Timer */}
-        <section className="mb-16 md:mb-24">
-          <CountdownTimer totalReserves={totalReserves} dailyConsumption={dailyConsumption} />
-          <p className="text-xs md:text-sm text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
-            Estimated based on current global oil reserves and consumption trends.
-          </p>
+        {/* Mode Selector */}
+        <section className="mb-16 md:mb-20 max-w-5xl mx-auto">
+          <ModeSelector currentMode={mode} onModeChange={setMode} />
         </section>
 
-        {/* Data Visualization Section */}
+        {/* Earth Overshoot Global Metric */}
+        <section className="mb-16 md:mb-20 max-w-4xl mx-auto">
+          <EarthOvershoot />
+        </section>
+
+        {/* Resource Cards Grid */}
         <section className="mb-16 md:mb-24">
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">
-            Global Oil Statistics
+            Resource Depletion Counters
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
-            <Card className="p-6 md:p-8 shadow-card backdrop-blur-sm bg-card/80">
-              <ProgressGauge
-                label="Global Oil Remaining"
-                value={totalReserves}
-                maxValue={totalReserves}
-                unit="barrels"
-                description="Total proven oil reserves worldwide"
-              />
-            </Card>
-            <Card className="p-6 md:p-8 shadow-card backdrop-blur-sm bg-card/80">
-              <ProgressGauge
-                label="Daily Consumption Rate"
-                value={dailyConsumption}
-                maxValue={dailyConsumption}
-                unit="barrels/day"
-                description="Current global daily consumption"
-              />
-            </Card>
-          </div>
-
-          {/* Key Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto mt-8">
-            <Card className="p-4 md:p-6 text-center shadow-card backdrop-blur-sm bg-card/80">
-              <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide mb-2">
-                Total Reserves
-              </p>
-              <p className="text-2xl md:text-3xl font-bold text-primary">
-                {(totalReserves / 1e12).toFixed(2)}T
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">barrels</p>
-            </Card>
-            <Card className="p-4 md:p-6 text-center shadow-card backdrop-blur-sm bg-card/80">
-              <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide mb-2">
-                Days Remaining
-              </p>
-              <p className="text-2xl md:text-3xl font-bold text-accent">
-                {Math.floor(daysRemaining).toLocaleString()}
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">approx. {Math.floor(daysRemaining / 365)} years</p>
-            </Card>
-            <Card className="p-4 md:p-6 text-center shadow-card backdrop-blur-sm bg-card/80">
-              <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide mb-2">
-                Daily Usage
-              </p>
-              <p className="text-2xl md:text-3xl font-bold text-destructive">
-                {(dailyConsumption / 1e6).toFixed(0)}M
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">barrels/day</p>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {resources.map((resource) => (
+              <ResourceCard key={resource.id} resource={resource} mode={mode} />
+            ))}
           </div>
         </section>
 
@@ -123,9 +65,11 @@ const Index = () => {
                   Every Reduction Pushes the Clock Backward
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  This projection shows what happens if current trends continue unchanged. However, renewable energy adoption, 
-                  efficiency improvements, and conservation efforts can extend our resources. Every barrel saved gives Earth more time 
-                  to transition to sustainable energy sources.
+                  These projections show what happens if current trends continue — but they're not inevitable. 
+                  Switch between scenarios above to see how conservation, efficiency, and sustainability efforts 
+                  can extend our resources. Every choice matters: renewable energy adoption, water conservation, 
+                  regenerative agriculture, and circular economies all give Earth more time to heal and humanity 
+                  more time to transition to sustainable systems.
                 </p>
               </div>
             </div>
@@ -137,13 +81,16 @@ const Index = () => {
         {/* Footer */}
         <footer className="text-center space-y-4 text-sm text-muted-foreground max-w-4xl mx-auto">
           <p>
-            This clock is a mathematical projection based on current public data sources. Future discoveries, 
-            technological shifts, or policy changes may alter these outcomes.
+            This clock is a mathematical projection based on current public data sources from global research institutions. 
+            Future discoveries, technological shifts, policy changes, or collective action may alter these outcomes. 
+            The purpose is awareness, reflection, and informed choice.
           </p>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             <a href="#" className="hover:text-primary transition-colors">Source Data</a>
             <span>•</span>
             <a href="#" className="hover:text-primary transition-colors">About the Project</a>
+            <span>•</span>
+            <a href="#" className="hover:text-primary transition-colors">Methodology</a>
             <span>•</span>
             <a href="#" className="hover:text-primary transition-colors">Contact</a>
             <span>•</span>
