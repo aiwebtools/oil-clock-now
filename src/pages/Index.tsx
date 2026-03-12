@@ -143,7 +143,7 @@ const Index = () => {
             <a href="#" className="hover:text-primary transition-colors">Update Log</a>
           </div>
           <p className="text-xs">
-            © {new Date().getFullYear()} <a href="https://aiwebtools.ai" className="text-primary hover:underline">AIWebTools.ai</a>
+            © {new Date().getFullYear()} <a href="https://aiwebtools.lovable.app/?via=aiwebtools" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">AIWebTools.ai</a>
           </p>
         </footer>
       </div>

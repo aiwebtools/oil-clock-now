@@ -94,8 +94,5 @@ const TimeSeparator = () => (
   <div className="hidden sm:flex items-center text-2xl sm:text-3xl md:text-5xl text-primary/50 font-bold -mt-4 sm:-mt-6">:</div>
 );
 
-const TimeSeparator = () => (
-  <div className="hidden md:flex items-center text-3xl md:text-5xl text-primary/50 font-bold -mt-6">:</div>
-);
 
 export default CountdownTimer;
