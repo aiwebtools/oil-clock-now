@@ -60,8 +60,8 @@ const CountdownTimer = ({ totalReserves, dailyConsumption }: CountdownTimerProps
   const formatNumber = (num: number) => String(num).padStart(2, '0');
 
   return (
-    <div className="flex flex-col items-center gap-8">
-      <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+    <div className="flex flex-col items-center gap-4 sm:gap-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-8">
         <TimeUnit value={timeRemaining.years} label="Years" />
         <TimeSeparator />
         <TimeUnit value={timeRemaining.days} label="Days" />
