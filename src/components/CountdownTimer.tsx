@@ -81,13 +81,17 @@ const CountdownTimer = ({ totalReserves, dailyConsumption }: CountdownTimerProps
 
 const TimeUnit = ({ value, label }: { value: number; label: string }) => (
   <div className="flex flex-col items-center">
-    <div className="bg-card border-2 border-primary/30 rounded-lg p-3 md:p-6 shadow-glow animate-pulse-glow min-w-[70px] md:min-w-[100px]">
-      <span className="text-4xl md:text-6xl font-mono font-bold text-primary tracking-wider">
+    <div className="bg-card border-2 border-primary/30 rounded-lg p-2 sm:p-3 md:p-6 shadow-glow animate-pulse-glow min-w-[56px] sm:min-w-[70px] md:min-w-[100px]">
+      <span className="text-2xl sm:text-4xl md:text-6xl font-mono font-bold text-primary tracking-wider">
         {String(value).padStart(2, '0')}
       </span>
     </div>
-    <span className="text-xs md:text-sm text-muted-foreground mt-2 uppercase tracking-widest">{label}</span>
+    <span className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mt-1 sm:mt-2 uppercase tracking-widest">{label}</span>
   </div>
+);
+
+const TimeSeparator = () => (
+  <div className="hidden sm:flex items-center text-2xl sm:text-3xl md:text-5xl text-primary/50 font-bold -mt-4 sm:-mt-6">:</div>
 );
 
 const TimeSeparator = () => (
