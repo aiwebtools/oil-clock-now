@@ -5,6 +5,7 @@ import ModeSelector from '@/components/ModeSelector';
 import EarthOvershoot from '@/components/EarthOvershoot';
 import SettingsModal from '@/components/SettingsModal';
 import LiveStatsSection from '@/components/LiveStatsSection';
+import HormuzSimulator from '@/components/HormuzSimulator';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { resources } from '@/lib/resourceData';
@@ -58,6 +59,9 @@ const Index = () => {
           <p className="text-xs md:text-sm text-center text-muted-foreground mt-6 max-w-2xl mx-auto">
             Reserves-to-consumption ratio: {(totalReserves / 1e12).toFixed(3)} trillion barrels proven crude reserves (OPEC ASB 2026, end-2025) ÷ {(dailyConsumption / 1e6).toFixed(2)}M barrels/day world demand ≈ {(totalReserves / dailyConsumption / 365.2425).toFixed(1)} years. A benchmark, not a prediction — it excludes new discoveries and reserve revisions.
           </p>
+          <div className="mt-8 max-w-4xl mx-auto">
+            <HormuzSimulator totalReserves={totalReserves} dailyConsumption={dailyConsumption} />
+          </div>
         </section>
 
         {/* Mode Selector */}
