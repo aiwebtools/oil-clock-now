@@ -41,8 +41,8 @@ const CountdownTimer = ({ totalReserves, dailyConsumption }: CountdownTimerProps
       const distance = depletionDate.getTime() - now;
 
       if (distance > 0) {
-        const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
-        const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+        const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365.2425));
+        const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 365.2425)) / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
